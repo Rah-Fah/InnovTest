@@ -1,0 +1,53 @@
+﻿@model TicketManager.Models.Ticket
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+
+<div class="text-center">
+    <h1 class="display-4">Ticket</h1>
+
+    <form asp-controller="Home" asp-action="CreateEditTicket" method="post">
+        <input type="hidden" asp-for="IdTicket" />
+        <input type="hidden" asp-for="isEditMode" />
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserId"></label>
+            <select asp-for="UserId" class="form-control">
+                <option value="">-- Selectioner un utilisateur --</option>
+                @foreach (var user in ViewBag.Users)
+                {
+                    <option value="@user.IdUser">@user.UserName</option>
+                }
+            </select>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Status"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="">-- Selectioner un statut --</option>
+                <option value="en cours">en cours</option>
+                <option value="terminé">terminé</option>
+                <option value="annulé">annulé</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+﻿@model TicketManager.Models.User
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+
+<div class="text-center">
+    <h1 class="display-4">Utilisateur</h1>
+
+    <form asp-controller="Home" asp-action="CreateEditUser" method="post">
+        <input type="hidden" asp-for="IdUser" />
+        <input type="hidden" asp-for="isEditMode" />
+
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="IsAdmin"></label>
+            <select asp-for="IsAdmin" class="form-control">
+                <option value="true">Administrateur</option>
+                <option value="false">Utilisateur</option>
+            </select>
+            <span asp-validation-for="IsAdmin" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+</div>

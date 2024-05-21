@@ -1,0 +1,37 @@
+﻿@model TicketManager.Models.ViewModels.UserTicketViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ticket</h1>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Message
+        </div>
+    }
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model._userTicket)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Status</td>
+                    <td><a asp-controller="Home" asp-action="CreateEditTicket" asp-route-id="@item.IdTicket">Modifier</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Home" asp-action="CreateEditTicket" asp-route-id="null" class="btn btn-primary">Nouveau</a>
+</div>
